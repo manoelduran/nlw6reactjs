@@ -1,8 +1,19 @@
+import { BrowserRouter as Router } from 'react-router-dom';
+import Rotas from './routes/index';
+import {ThemeProvider} from 'styled-components';
+import theme from './styles/theme';
+import { GlobalStyle } from './styles/global';
 
 
 function App() {
+
   return (
-    <h1>ola</h1>
+    <ThemeProvider theme={theme}>
+    <GlobalStyle/>
+    <Router>
+      <Rotas/>
+    </Router>
+    </ThemeProvider>
   );
 }
 
