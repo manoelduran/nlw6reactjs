@@ -18,17 +18,19 @@ import {
     FormInput,
 } from './styles'
 import { Button } from '../../components/Button';
-import {firebase, auth} from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+
+
 
 
 export function Home() {
+    const { signInWithGoogle, user } = useAuth();
     const navigate = useNavigate();
-    function handleCreateRoom() {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider).then(result => {
-            console.log(result)
-        })
+    async function handleCreateRoom() {
+        if (!user) {
+            await signInWithGoogle();
+        };
         navigate('NewRoom');
     }
     return (

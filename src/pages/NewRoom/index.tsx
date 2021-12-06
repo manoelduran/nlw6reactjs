@@ -16,8 +16,10 @@ FormInput,
 Text,
 } from './styles'
 import { Button } from '../../components/Button';
+import { useAuth } from '../../hooks/useAuth';
 
 export function NewRoom() {
+    const {user} = useAuth();
     return (
         <Container>
             <LeftDiv>
@@ -31,6 +33,7 @@ export function NewRoom() {
             <Main>
                     <LoginDiv>
                         <Logo  src={LogoImg} alt="Logomarca LetMeAsk"/>
+                        <h1>{user?.name}</h1>
                         <MainTitle>Crie uma nova sala</MainTitle>
                         <Form>
                             <FormInput
