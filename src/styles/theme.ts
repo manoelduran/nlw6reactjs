@@ -8,6 +8,7 @@ const theme = {
   gray_dark: '#737380',
   gray_medium: '#A8A8B3',
   gray_light: '#DBDCDD',
+  border: '#E2E2E2',
   white: '#FFFFFF',
   white_background: '#F8F8F8',
   white_details: '#FEFEFE',

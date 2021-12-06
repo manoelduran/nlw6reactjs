@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.button`
 width: 100%;
+max-width: 320px;
 margin-top: 16px;
 height: 50px;
 border-radius: 8px;
@@ -18,7 +19,7 @@ img{
     margin-right: 8px;
 }
 &:not(:disabled):hover{
-    background: ${({theme}) => theme.hover_purple};
+    filter: brightness(0.9);
 }
 &:disabled{
     opacity: 0.6;
