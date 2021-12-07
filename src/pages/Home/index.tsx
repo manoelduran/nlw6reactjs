@@ -36,17 +36,21 @@ export function Home() {
         };
         navigate('/rooms/new');
     }
-    async function handleJoinRoom(event: FormEvent){
-event.preventDefault();
-if(roomCode.trim() === ''){
-    return
-}
-const roomRef = await database.ref(`/rooms/${roomCode}`).get()
-if(!roomRef.exists()){
-    alert('Room does not exists.')
-    return;
-}
-navigate(`/rooms/${roomCode}`)
+    async function handleJoinRoom(event: FormEvent) {
+        event.preventDefault();
+        if (roomCode.trim() === '') {
+            return
+        }
+        const roomRef = await database.ref(`/rooms/${roomCode}`).get()
+        if (!roomRef.exists()) {
+            alert('Room does not exists.');
+            return;
+        }
+        if (roomRef.val().endedAt) {
+            alert('Room already closed');
+            return;
+        }
+        navigate(`/rooms/${roomCode}`)
     }
     return (
         <Container>

@@ -17,15 +17,22 @@ import { Button } from '../../components/Button';
 import deleteImg from '../../assets/delete.svg';
 import { RoomCode } from '../../components/RoomCode';
 // import { useAuth } from '../../hooks/useAuth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
 
 export function AdminRoom() {
+    const navigate = useNavigate();
     //  const { user } = useAuth();
     const { id } = useParams() as RoomParams;
     const { title, questions } = useRoom(id);
+    async function handleEndRoom() {
+        await database.ref(`/rooms/${id}`).update({
+            endedAt: new Date(),
+        });
+        navigate('/');
+    }
     async function handleDeleteQuestion(questionId: string) {
         if (window.confirm('Tem certeza que você deseja excluir esta pergunta?')) {
             await database.ref(`/rooms/${id}/questions/${questionId}`).remove()
@@ -38,7 +45,9 @@ export function AdminRoom() {
                     <HeaderImage src={LogoImg} alt="Letmeask" />
                     <CodeDiv>
                         <RoomCode code={id} />
-                        <Button isOutlined>Encerrar sala</Button>
+                        <Button
+                            onClick={() => handleEndRoom()}
+                            isOutlined>Encerrar sala</Button>
                     </CodeDiv>
                 </HeaderContent>
             </Header>
