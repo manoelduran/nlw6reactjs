@@ -88,7 +88,12 @@ margin-left: 16px;
 margin-right: 16px;
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+button{
+    margin-top: 16px;
+    width: 100%;
+}
+`;
 
 export const FormInput = styled.input`
 

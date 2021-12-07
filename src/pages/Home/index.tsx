@@ -78,7 +78,6 @@ navigate(`/rooms/${roomCode}`)
                             onChange={(event) => setRoomCode(event.target.value)}
                         />
                         <Button type="submit">
-
                             Entrar na sala
                         </Button>
                     </Form>

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-width: 100%;
 max-width: 320px;
-margin-top: 16px;
 height: 50px;
 border-radius: 8px;
 padding: 0 32px;
@@ -12,11 +10,16 @@ justify-content: center;
 align-items: center;
 border: 0;
 font-weight: 500;
-background: ${({theme}) => theme.purple};
-color: ${({theme}) => theme.white_details};
+background: ${({ theme }) => theme.purple};
+color: ${({ theme }) => theme.white_details};
 transition: filter 0.2s;
 img{
     margin-right: 8px;
+}
+&.outlined{
+    background: ${({ theme }) => theme.white};
+    border: 1px solid ${({ theme }) => theme.purple};
+    color: ${({ theme }) => theme.purple};
 }
 &:not(:disabled):hover{
     filter: brightness(0.9);

@@ -94,3 +94,11 @@ text-decoration: underline;
 font-size: 14px;
 font-weight: 500;
 `;
+
+export const QuestionsList = styled.div`
+margin-top: 32px;
+`;
+
+export const LikeButton = styled.button`
+`;
+export const Likes = styled.span``;
