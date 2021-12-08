@@ -8,6 +8,14 @@ padding: 24px;
 & + div{
     margin-top: 12px;
 }
+&.highlighted{
+  background: #f4f0ff;
+  border: 1px solid  ${({ theme }) => theme.purple};
+}
+&.asnwered{
+  background: ${({ theme }) => theme.gray_light};
+
+}
 `;
 
 export const Content = styled.p`
@@ -18,6 +26,10 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 margin-top: 24px;
+>div{
+  display: flex;
+  gap: 16px;
+}
 button {
       border: 0;
       background: transparent;

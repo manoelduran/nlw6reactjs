@@ -14,10 +14,12 @@ interface QuestionProps {
     };
     content: string;
     children?: ReactNode;
+    isAnswered?: boolean;
+    isHighlighted?: boolean;
 }
-export function Question({ author, content, children = false }: QuestionProps) {
+export function Question({ author, content, children = false, isAnswered = false, isHighlighted = false }: QuestionProps) {
     return (
-        <Container>
+        <Container className={`${isAnswered ? 'asnwered' : ''} ${isHighlighted && !isAnswered ? 'highlighted' : ''} `}>
             <Content>{content} </Content>
             <FooterDiv>
                 <UserInfo>

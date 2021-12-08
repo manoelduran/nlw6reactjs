@@ -13,6 +13,8 @@ import {
     DeleteImage,
 } from './styles';
 import LogoImg from '../../assets/logo.svg';
+import checkImg from '../../assets/check.svg';
+import answerImg from '../../assets/answer.svg';
 import { Button } from '../../components/Button';
 import deleteImg from '../../assets/delete.svg';
 import { RoomCode } from '../../components/RoomCode';
@@ -32,12 +34,22 @@ export function AdminRoom() {
             endedAt: new Date(),
         });
         navigate('/');
-    }
+    };
     async function handleDeleteQuestion(questionId: string) {
         if (window.confirm('Tem certeza que você deseja excluir esta pergunta?')) {
             await database.ref(`/rooms/${id}/questions/${questionId}`).remove()
-        }
-    }
+        };
+    };
+    async function handleCheckQuestionAsAnswered(questionId: string) {
+        await database.ref(`/rooms/${id}/questions/${questionId}`).update({
+            isAnswered: true,
+        })
+    };
+    async function handleHighlightQuestion(questionId: string) {
+        await database.ref(`/rooms/${id}/questions/${questionId}`).update({
+            isHighlighted: true,
+        })
+    };
     return (
         <Container>
             <Header>
@@ -65,7 +77,26 @@ export function AdminRoom() {
                                 key={question.id}
                                 content={question.content}
                                 author={question.author}
+                                isAnswered={question.isAnswered}
+                                isHighlighted={question.isHighlighted}
                             >
+                                {!question.isAnswered && (
+                                    <>
+                                        <DeleteButton
+                                            type="button"
+                                            onClick={() => handleCheckQuestionAsAnswered(question.id)}
+                                        >
+                                            <DeleteImage src={checkImg} alt="Marcar pergunta como respondida" />
+                                        </DeleteButton>
+                                        <DeleteButton
+                                            type="button"
+                                            onClick={() => handleHighlightQuestion(question.id)}
+                                        >
+                                            <DeleteImage src={answerImg} alt="Dar destaque a pergunta" />
+                                        </DeleteButton>
+                                    </>
+                                )
+                                }
                                 <DeleteButton
                                     type="button"
                                     onClick={() => handleDeleteQuestion(question.id)}
